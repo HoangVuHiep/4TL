@@ -20,12 +20,13 @@ namespace _4TL.Models
 
         [StringLength(200)]
         public string FeatureImage { get; set; }
+        [ForeignKey("Category")]
+        public int CateId { get; set; }
 
-        public int? CateId { get; set; }
-
-        [StringLength(50)]
+        [StringLength(500)]
         public string Des { get; set; }
-
+        public int Year { get; set; }
+        
         public virtual Category Category { get; set; }
     }
 }

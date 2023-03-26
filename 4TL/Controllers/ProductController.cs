@@ -17,31 +17,58 @@ namespace _4TL.Controllers
             var product = dbContext.Products.FirstOrDefault(x => x.Id == id);
             return View(product);
         }
-        public ActionResult Create()
+        private int isExist(int id)
         {
+            List<Item> cart = (List<Item>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Product.Id.Equals(id))
+                    return i;
+            return -1;
+        }
+        public ActionResult UpdateCart()
+        {
+            int productId = int.Parse(Request.Form["productId"]);
+            int quantity = int.Parse(Request.Form["quantity"]);
 
-                var listCate = dbContext.Categories.ToList();
-                ViewBag.Loai = listCate;
-                
-            
+            List<Item> cart = (List<Item>)Session["cart"];
+            int index = isExist(productId);
+            if (index != -1)
+            {
+                cart[index].Quantity = quantity;
+            }
+            Session["cart"] = cart;
+
+
+            return RedirectToAction("ViewCart");
+        }
+        public ActionResult AddCart(int id)
+        {
+            Product product = dbContext.Products.Find(id);
+            if (Session["cart"] == null)
+            {
+                List<Item> cart = new List<Item>();
+                cart.Add(new Item { Product = product, Quantity = 1 });
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    cart[index].Quantity++;
+                }
+                else
+                {
+                    cart.Add(new Item { Product = product, Quantity = 1 });
+                }
+                Session["cart"] = cart;
+            }
+            return RedirectToAction("ViewCart");
+        }
+        public ActionResult ViewCart()
+        {
             return View();
         }
-        [HttpPost]
-        public ActionResult SaveProduct(Product product, HttpPostedFileBase FeatureImage)
-        {
-            if (!ModelState.IsValid)
-            {
-
-                var listCate = dbContext.Categories.ToList();
-                ViewBag.Loai = listCate;
-                return View("Create",product);
-            }
-                    string path = Path.Combine(Server.MapPath("~/Content/NoiThat/images" ), Path.GetFileName(FeatureImage.FileName));
-                    FeatureImage.SaveAs(path);
-            product.FeatureImage = "/Content/NoiThat/images/"+ Path.GetFileName(FeatureImage.FileName);
-            dbContext.Products.Add(product);
-            dbContext.SaveChanges();
-            return RedirectToAction("Index","Home");
-        }
-    }
+    }   
 }

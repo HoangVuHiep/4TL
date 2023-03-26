@@ -170,6 +170,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -189,8 +192,25 @@
     <Compile Include="Migrations\202303141321434_AddColumnFullNameToASPUser.designer.cs">
       <DependentUpon>202303141321434_AddColumnFullNameToASPUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303210049494_AlterProduct_Table.cs" />
+    <Compile Include="Migrations\202303210049494_AlterProduct_Table.designer.cs">
+      <DependentUpon>202303210049494_AlterProduct_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303210404357_AlterProduct_Table1.cs" />
+    <Compile Include="Migrations\202303210404357_AlterProduct_Table1.designer.cs">
+      <DependentUpon>202303210404357_AlterProduct_Table1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303210406298_AlterProduct_Table2.cs" />
+    <Compile Include="Migrations\202303210406298_AlterProduct_Table2.designer.cs">
+      <DependentUpon>202303210406298_AlterProduct_Table2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303210418515_AlterProduct_Table99.cs" />
+    <Compile Include="Migrations\202303210418515_AlterProduct_Table99.designer.cs">
+      <DependentUpon>202303210418515_AlterProduct_Table99.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -202,6 +222,26 @@
     <Compile Include="Ultil\Ultils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\401.html" />
+    <Content Include="Areas\Admin\Content\404.html" />
+    <Content Include="Areas\Admin\Content\500.html" />
+    <Content Include="Areas\Admin\Content\assets\demo\chart-area-demo.js" />
+    <Content Include="Areas\Admin\Content\assets\demo\chart-bar-demo.js" />
+    <Content Include="Areas\Admin\Content\assets\demo\chart-pie-demo.js" />
+    <Content Include="Areas\Admin\Content\assets\demo\datatables-demo.js" />
+    <Content Include="Areas\Admin\Content\assets\img\error-404-monochrome.svg" />
+    <Content Include="Areas\Admin\Content\charts.html" />
+    <Content Include="Areas\Admin\Content\css\styles.css" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Content\js\datatables-simple-demo.js" />
+    <Content Include="Areas\Admin\Content\js\scripts.js" />
+    <Content Include="Areas\Admin\Content\layout-sidenav-light.html" />
+    <Content Include="Areas\Admin\Content\layout-static.html" />
+    <Content Include="Areas\Admin\Content\login.html" />
+    <Content Include="Areas\Admin\Content\password.html" />
+    <Content Include="Areas\Admin\Content\register.html" />
+    <Content Include="Areas\Admin\Content\tables.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -271,6 +311,8 @@
     <Content Include="Content\NoiThat\js\bootstrap.bundle.min.js.map" />
     <Content Include="Content\NoiThat\js\bootstrap.js.map" />
     <Content Include="Content\NoiThat\js\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -322,10 +364,12 @@
     <Content Include="Views\SanPham\__DanhSach.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\ViewCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\NoiThat\fonts\" />
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +394,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303141321434_AddColumnFullNameToASPUser.resx">
       <DependentUpon>202303141321434_AddColumnFullNameToASPUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303210049494_AlterProduct_Table.resx">
+      <DependentUpon>202303210049494_AlterProduct_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303210404357_AlterProduct_Table1.resx">
+      <DependentUpon>202303210404357_AlterProduct_Table1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303210406298_AlterProduct_Table2.resx">
+      <DependentUpon>202303210406298_AlterProduct_Table2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303210418515_AlterProduct_Table99.resx">
+      <DependentUpon>202303210418515_AlterProduct_Table99.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Trang Chu";
 }
-<a href="/Product/Create" class="btn-primary>THEM SAN PHAM</a>
+<a href="/Product/Create" class="btn-primary">THEM SAN PHAM</a>
 <div class="design_section layout_padding">
     <div id="my_slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -29,7 +29,8 @@
                                         </p>
                                         <p class="chair_text">@_4TL.Ultil.Ultils.NumberToText((double)item.Price)</p>
 
-                                        <div class="buy_bt"><a href="#">Mua ngay</a></div>
+                                        <div class="buy_bt"><a href="#">Mua Ngay</a></div>
+                                        <div class="buy_bt"><a href="/Product/AddCart/@item.Id">Gio Hang</a></div>
                                     </div>
                                 </div>
                             }
